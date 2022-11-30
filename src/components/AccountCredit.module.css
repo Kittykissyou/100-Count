@@ -1,0 +1,82 @@
+.formContaner {
+  display: block;
+  justify-content: center;
+  margin: auto;
+  width: 75%;
+}
+
+.formContaner input {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin: 20px;
+  text-align: center;
+  font-family: 'Segoe UI';
+  width: 480px;
+  height: 41.5px;
+  font-size: 30px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.formContaner Button {
+  margin: 10px;
+}
+
+.inputContaner {
+  display: flex;
+}
+.inputContaner Button {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 0px;
+}
+
+/*
+.aloneButtonTop {
+  margin-left: 2%;
+  margin-bottom: 20px;
+  padding: 15px;
+  font-size: 30px;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  height: 70%;
+}
+
+.aloneButtonTop:hover {
+  background-color: rgb(253, 253, 186);
+}
+
+.buttonTop {
+  margin-bottom: 0%;
+  margin-left: 0px;
+  height: 50%;
+  padding: 15px;
+  font-size: 30px;
+  border-radius: 5px;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  border: 0;
+  cursor: pointer;
+}
+.buttonTop:hover {
+  background-color: rgb(253, 253, 186);
+}
+
+.buttonBottom {
+  margin-top: 0%;
+  margin-left: 0px;
+  height: 50%;
+  padding: 15px;
+  font-size: 30px;
+  border-radius: 5px;
+  border-top-left-radius: 0%;
+  border-top-right-radius: 0%;
+  border: 0;
+  cursor: pointer;
+}
+.buttonBottom:hover {
+  background-color: rgb(253, 253, 186);
+}
+*/

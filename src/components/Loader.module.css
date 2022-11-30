@@ -1,0 +1,28 @@
+.refresh {
+  margin: auto;
+  margin-top: 30%;
+  margin-bottom: 20px;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg) scale(1, -1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1, -1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1, -1);
+  }
+}
+
+.check {
+  margin: auto;
+  margin-top: 30%;
+  margin-bottom: 20px;
+  width: 70px;
+  height: 70px;
+}

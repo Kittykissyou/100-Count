@@ -1,0 +1,68 @@
+.formContaner form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContaner button {
+  padding: 15px;
+  font-size: 30px;
+  border-radius: 5px;
+  border: 0;
+  margin: 20px;
+  cursor: pointer;
+}
+.descriptionInput {
+  text-align: center;
+  font-family: 'Segoe UI';
+  width: 25%;
+  height: 41.5px;
+  font-size: 30px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 0.8s;
+}
+
+.descriptionInput:hover {
+  width: 50%;
+}
+.formContaner input {
+  text-align: center;
+  font-family: 'Segoe UI';
+  width: 25%;
+  height: 41.5px;
+  font-size: 30px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.formContaner button:hover {
+  background-color: rgb(253, 253, 186);
+}
+
+.formContaner select {
+  text-align: center;
+  font-family: 'Segoe UI';
+  width: 35%;
+  height: 65px;
+  font-size: 30px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.tableContaner {
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  font-family: 'Segoe UI';
+  font-size: 25px;
+}
+
+.title {
+  margin-top: 20px;
+  font-size: 30px;
+}

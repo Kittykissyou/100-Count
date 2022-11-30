@@ -1,0 +1,8 @@
+.fastMenuContaner Button {
+  margin: 8px;
+  transition-duration: 0.5s;
+}
+
+.fastMenuContaner Button:hover {
+  transform: scale(1.2);
+}
