@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Steps from './Steps';
-import axios from 'axios';
 import Description from './Description';
 import Button from './UI/Button';
 import FastMenu from './FastMenu';
