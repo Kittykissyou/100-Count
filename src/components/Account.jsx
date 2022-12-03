@@ -4,7 +4,7 @@ import Description from './Description';
 import Summ from './Summ';
 import FastMenu from './FastMenu';
 import style from './Components.module.css';
-import accounts from '../Data/accounts'; // убрать
+
 const Account = ({
   addSkipTransaction,
   addTransaction,

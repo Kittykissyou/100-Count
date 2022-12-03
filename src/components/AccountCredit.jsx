@@ -21,6 +21,26 @@ const AccountCredit = ({
     setObjAccounts({ ...objAccounts, [inputValueName]: inputValueBalance });
     setInputValueName('');
     setInputValueBalance('');
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append(inputValueName, inputValueBalance);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow',
+    };
+
+    fetch(
+      'https://script.google.com/macros/s/AKfycby5V-bp2ae8wbpNX7iVTgc_TbvP2UPD1bMRXRjqtyAZ5bqvjy1tkXkENRTd_uunM8nHAw/exec',
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log('error', error));
   };
   const refreshHandler = (event) => {
     event.preventDefault();
