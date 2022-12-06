@@ -17,12 +17,25 @@ const Summ = ({
   const [isBack, setIsBack] = useState(false);
   const [isCheck, setIsCheck] = useState(false); // состояние "подтвержденности"
   const [inputValue, setInputValue] = useState('');
+  const [accountsFromGoogle, setAccountsFromGoogle] = useState({});
   const submitHandler = (event) => {
     event.preventDefault();
     setIsCheck(!isCheck);
     addTransaction(event, inputValue);
     addStep(1);
   };
+
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+  fetch(
+    'https://script.google.com/macros/s/AKfycbyDo6wbCglb9ZDqyGNGMaTF0l0LzHtHwA5AiYPzNsddkUDi_hDkk8CVdlAcjpTrBMg2ug/exec',
+    requestOptions
+  )
+    .then((response) => response.text())
+    .then((result) => setAccountsFromGoogle(JSON.parse(result)))
+    .catch((error) => console.log('error', error));
 
   return (
     <div>
@@ -35,6 +48,7 @@ const Summ = ({
           addStep={addStep}
           stepCount={stepCount}
           deleteStep={deleteStep}
+          accountsFromGoogle={accountsFromGoogle}
         />
       ) : isBack ? (
         <Critery
@@ -62,7 +76,12 @@ const Summ = ({
             />
             <Button
               type="submit"
-              disabled={inputValue.length > 0 ? false : true}
+              disabled={
+                inputValue.length > 0 &&
+                Object.keys(accountsFromGoogle).length > 0
+                  ? false
+                  : true
+              }
             >
               Подтвердить
             </Button>

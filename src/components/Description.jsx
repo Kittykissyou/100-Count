@@ -13,6 +13,7 @@ const Description = ({
   stepCount,
   addStep,
   deleteStep,
+  accountsFromGoogle = { accountsFromGoogle },
 }) => {
   const [isBack, setIsBack] = useState(false);
   const [isCheck, setIsCheck] = useState(false); // состояние "подтвержденности"
@@ -35,6 +36,7 @@ const Description = ({
           addStep={addStep}
           stepCount={stepCount}
           deleteStep={deleteStep}
+          accountsFromGoogle={accountsFromGoogle}
         />
       ) : isBack ? (
         <Account

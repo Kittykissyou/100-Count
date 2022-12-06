@@ -15,10 +15,10 @@ const AccountCredit = ({
   const [inputValueName, setInputValueName] = useState('');
   const [inputValueBalance, setInputValueBalance] = useState('');
   const [isCheck, setIsCheck] = useState(false);
-  const [objAccounts, setObjAccounts] = useState({});
+  // const [objAccounts, setObjAccounts] = useState({});
   const addAccountHandler = (event) => {
     event.preventDefault();
-    setObjAccounts({ ...objAccounts, [inputValueName]: inputValueBalance });
+    // setObjAccounts({ ...objAccounts, [inputValueName]: inputValueBalance });
     setInputValueName('');
     setInputValueBalance('');
     const myHeaders = new Headers();
@@ -50,12 +50,13 @@ const AccountCredit = ({
   const nextStepHandler = (event) => {
     event.preventDefault();
     setIsCheck(!isCheck);
-    location.reload();
+    //location.reload();
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     localStorage.setItem('objAccounts', JSON.stringify(objAccounts));
   }, [objAccounts]);
+  */
 
   return (
     <>
@@ -110,7 +111,7 @@ const AccountCredit = ({
             <Button>Редактировать</Button>
             <Button
               type="submit"
-              disabled={Object.keys(objAccounts).length > 0 ? false : true}
+              // disabled={Object.keys(objAccounts).length > 0 ? false : true}
             >
               Далее
             </Button>

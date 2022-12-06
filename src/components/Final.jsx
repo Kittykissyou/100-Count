@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Steps from './Steps';
 import Description from './Description';
 import Button from './UI/Button';
@@ -14,43 +14,24 @@ const Final = ({
   stepCount,
   addStep,
   deleteStep,
+  accountsFromGoogle,
 }) => {
   const [isBack, setIsBack] = useState(false); // возврат назад из FASTMENU
   const [finalObj, setFinalObj] = useState({}); // Инф. после расчетов
   const [checkLoader, setCheckLoader] = useState(false); // отображ. чек лоадера
   const [goLoader, setGoLoader] = useState(false); // запуск спина лоадера
-  const [allAccount, setAllAccount] = useState(
-    //актуальные остатки на счете
-    JSON.parse(localStorage.getItem('objAccounts'))
-  );
 
   const doTransaction = () => {
-    // функция расчета в остатках на счете
-    for (let i = 0; i <= Object.keys(allAccount).length; i++) {
-      if (Object.keys(allAccount)[i] == objWithInf.account) {
-        setAllAccount({
-          ...allAccount,
-          [objWithInf.account]:
-            allAccount[Object.keys(allAccount)[i]] - Number(objWithInf.summ),
-        });
-      }
-    }
-  };
-
-  useEffect(() => {
-    // передача в локалСтор остатков на счете после расчетов
     setFinalObj({
       ...objWithInf,
-      ['balance']: allAccount[objWithInf.account],
+      ['balance']:
+        accountsFromGoogle[objWithInf.account] - Number(objWithInf.summ),
     });
-    localStorage.setItem('objAccounts', JSON.stringify(allAccount));
-  }, [allAccount]);
+  };
 
   const goGoogle = () => {
-    // передача данных в Google Sheets
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
-
     const urlencoded = new URLSearchParams();
     for (let i = 0; i <= Object.keys(finalObj).length; i++) {
       urlencoded.append(
@@ -74,6 +55,28 @@ const Final = ({
         console.log(result);
         setCheckLoader(!checkLoader);
         setTimeout(() => location.reload(), 1500);
+        const myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+        const urlencoded = new URLSearchParams();
+        urlencoded.append('event', 'изменение после транзакции');
+        urlencoded.append('account', finalObj.account);
+        urlencoded.append('sum', finalObj.balance);
+
+        const requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: 'follow',
+        };
+
+        fetch(
+          'https://script.google.com/macros/s/AKfycbzP8RyNXYFn3w2qEccTxbJVNCSvt_1ma5nvHkbgw2t2xLdVyOzMtO8TLSOgrTlwCOAzMw/exec',
+          requestOptions
+        )
+          .then((response) => response.text())
+          .then((result) => console.log(result))
+          .catch((error) => console.log('error', error));
       })
       .catch((error) => console.log('error', error));
     setGoLoader(!goLoader);

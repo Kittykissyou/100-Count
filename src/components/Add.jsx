@@ -33,26 +33,14 @@ const Add = () => {
 
   return (
     <div>
-      {localStorage.getItem('objAccounts') == undefined ? (
-        <AccountCredit
-          addSkipTransaction={addSkipTransactionHandler}
-          addTransaction={addTransactionHandler}
-          objWithInf={transactions}
-          stepCount={stepCount}
-          addStep={(n) => setStepCount(stepCount + n)}
-          deleteStep={(n) => setStepCount(stepCount - n)}
-        />
-      ) : (
-        <ChooseDate
-          addSkipTransaction={addSkipTransactionHandler}
-          addTransaction={addTransactionHandler}
-          objWithInf={transactions}
-          stepCount={stepCount}
-          addStep={(n) => setStepCount(stepCount + n)}
-          deleteStep={(n) => setStepCount(stepCount - n)}
-          addBalance={() => addBalance}
-        />
-      )}
+      <AccountCredit
+        addSkipTransaction={addSkipTransactionHandler}
+        addTransaction={addTransactionHandler}
+        objWithInf={transactions}
+        stepCount={stepCount}
+        addStep={(n) => setStepCount(stepCount + n)}
+        deleteStep={(n) => setStepCount(stepCount - n)}
+      />
     </div>
   );
 };

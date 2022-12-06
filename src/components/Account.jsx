@@ -13,12 +13,11 @@ const Account = ({
   stepCount,
   addStep,
   deleteStep,
+  accountsFromGoogle,
 }) => {
   const [isBack, setIsBack] = useState(false);
   const [isCheck, setIsCheck] = useState(false); // состояние "подтвержденности"
-  const [inputValue, setInputValue] = useState(
-    Object.keys(JSON.parse(localStorage.getItem('objAccounts')))[0]
-  );
+  const [inputValue, setInputValue] = useState();
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -38,6 +37,7 @@ const Account = ({
           addStep={addStep}
           stepCount={stepCount}
           deleteStep={deleteStep}
+          accountsFromGoogle={accountsFromGoogle}
         />
       ) : isBack ? (
         <Summ
@@ -62,11 +62,9 @@ const Account = ({
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
             >
-              {Object.keys(JSON.parse(localStorage.getItem('objAccounts'))).map(
-                (account) => (
-                  <option key={id()}> {account}</option>
-                )
-              )}
+              {Object.keys(accountsFromGoogle).map((account) => (
+                <option key={id()}> {account}</option>
+              ))}
             </select>
             <button type="submit">Подтвердить</button>
           </form>
