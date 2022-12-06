@@ -50,13 +50,7 @@ const AccountCredit = ({
   const nextStepHandler = (event) => {
     event.preventDefault();
     setIsCheck(!isCheck);
-    //location.reload();
   };
-
-  /* useEffect(() => {
-    localStorage.setItem('objAccounts', JSON.stringify(objAccounts));
-  }, [objAccounts]);
-  */
 
   return (
     <>
@@ -122,93 +116,3 @@ const AccountCredit = ({
   );
 };
 export default AccountCredit;
-
-/*{
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { SlPlus, SlMinus } from 'react-icons/sl';
-import style from './AccountCredit.module.css';
-
-const AccountCredit = () => {
-  const [howManyInputs, setHowManyInputs] = useState([1]);
-  const addInputHandler = () => {
-    setHowManyInputs([...howManyInputs, howManyInputs.length + 1]);
-  };
-  const deleteInputHandler = () => {
-    setHowManyInputs(
-      howManyInputs.filter((el, index) => index !== howManyInputs.length - 1)
-    );
-  };
-
-  const [inputValue, setInputValue] = useState({});
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    let myObj = {};
-    for (let i = 0; i < howManyInputs.length; i++) {
-      myObj[document.getElementById(`${i}-prop`).value] =
-        document.getElementById(`${i}-value`).value;
-    }
-    setInputValue(myObj);
-  }; /* в этом обработчике заложена логика возврата значений из импутов. Вне зависимости от кол-ва
-  инпутов, по нажатию кнопки, все значения попадают в объект, который в дальнейшем будет испол. в 
-  других компонентах 
-  const [inInput, setInInput] = useState('');
-  const inputHandler = (event) => {
-    setInInput(event.target.value);
-  };
-  console.log(inInput);
-  return (
-    <div>
-      <h3>Ввнесите сведения о ваших счетах</h3>
-      <form onSubmit={onSubmitHandler}>
-        <div className={style.formContaner}>
-          <div>
-            {howManyInputs.map((el, index) => (
-              <input
-                type="text"
-                name={`${index}-prop-input`}
-                key={uuidv4()}
-                id={`${index}-prop`}
-                placeholder={`${index}-prop`}
-              ></input>
-            ))}
-          </div>
-          <div>
-            {howManyInputs.map((el, index) => (
-              <input
-                type="text"
-                name={`${index}-valu-input`}
-                key={uuidv4()}
-                id={`${index}-value`}
-                placeholder={`${index}-value`}
-              ></input>
-            ))}
-          </div>
-          <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-            <button
-              onClick={addInputHandler}
-              className={`${style.aloneButtonTop} ${
-                howManyInputs.length > 1 ? style.buttonTop : ''
-              }`}
-            >
-              <SlPlus />
-            </button>
-            {howManyInputs.length > 1 ? (
-              <button
-                onClick={deleteInputHandler}
-                className={style.buttonBottom}
-              >
-                <SlMinus />
-              </button>
-            ) : (
-              ''
-            )}
-          </div>
-        </div>
-        <button onClick={onSubmitHandler}>Подтвердить</button>
-      </form>
-    </div>
-  );
-};
-export default AccountCredit;
-}*/

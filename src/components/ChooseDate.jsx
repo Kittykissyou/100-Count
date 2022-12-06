@@ -12,6 +12,7 @@ const ChooseDate = ({
   stepCount,
   addStep,
   deleteStep,
+  accountsFromGoogle,
 }) => {
   const currentDate = () => {
     //Функция возвращающая текующую дату
@@ -38,6 +39,7 @@ const ChooseDate = ({
           stepCount={stepCount}
           addStep={addStep}
           deleteStep={deleteStep}
+          accountsFromGoogle={accountsFromGoogle}
         />
       ) : (
         <div>

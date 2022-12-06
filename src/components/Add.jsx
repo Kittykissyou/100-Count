@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ChooseDate from './ChooseDate';
 import AccountCredit from './AccountCredit';
+import Loader from './Loader';
 
 const Add = () => {
   let [transactions, setTransactions] = useState({});
@@ -18,8 +19,18 @@ const Add = () => {
     свойств в объект приводили либо к ошибке, либо при первом рендеринге появлялся пустой
     объект, а не объект внутри Set */
   };
-
-  console.log(transactions);
+  const [info, setInfo] = useState(false);
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+  fetch(
+    'https://script.google.com/macros/s/AKfycbyDo6wbCglb9ZDqyGNGMaTF0l0LzHtHwA5AiYPzNsddkUDi_hDkk8CVdlAcjpTrBMg2ug/exec',
+    requestOptions
+  )
+    .then((response) => response.text())
+    .then((result) => setInfo(JSON.parse(result)))
+    .catch((error) => console.log('error', error));
 
   /* эта функция позволяет записать в состояние свойство и значение,
     которое мы будем получать на каждом шаге из импута. В конце концов,
@@ -33,16 +44,54 @@ const Add = () => {
 
   return (
     <div>
-      <AccountCredit
-        addSkipTransaction={addSkipTransactionHandler}
-        addTransaction={addTransactionHandler}
-        objWithInf={transactions}
-        stepCount={stepCount}
-        addStep={(n) => setStepCount(stepCount + n)}
-        deleteStep={(n) => setStepCount(stepCount - n)}
-      />
+      {info ? (
+        Object.keys(info).length > 0 ? (
+          <ChooseDate
+            addSkipTransaction={addSkipTransactionHandler}
+            addTransaction={addTransactionHandler}
+            objWithInf={transactions}
+            stepCount={stepCount}
+            addStep={(n) => setStepCount(stepCount + n)}
+            deleteStep={(n) => setStepCount(stepCount - n)}
+          />
+        ) : (
+          <AccountCredit
+            addSkipTransaction={addSkipTransactionHandler}
+            addTransaction={addTransactionHandler}
+            objWithInf={transactions}
+            stepCount={stepCount}
+            addStep={(n) => setStepCount(stepCount + n)}
+            deleteStep={(n) => setStepCount(stepCount - n)}
+          />
+        )
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
 
 export default Add;
+
+/*(Object.keys(info).length = 0 ? (
+  <AccountCredit
+    addSkipTransaction={addSkipTransactionHandler}
+    addTransaction={addTransactionHandler}
+    objWithInf={transactions}
+    stepCount={stepCount}
+    addStep={(n) => setStepCount(stepCount + n)}
+    deleteStep={(n) => setStepCount(stepCount - n)}
+  />
+) : Object.keys(info).length > 0 ? (
+  <ChooseDate
+    addSkipTransaction={addSkipTransactionHandler}
+    addTransaction={addTransactionHandler}
+    objWithInf={transactions}
+    stepCount={stepCount}
+    addStep={(n) => setStepCount(stepCount + n)}
+    deleteStep={(n) => setStepCount(stepCount - n)}
+  />
+) : (
+  <Loader />
+))
+*/

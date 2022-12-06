@@ -47,6 +47,7 @@ const Description = ({
           addStep={addStep}
           stepCount={stepCount}
           deleteStep={deleteStep}
+          accountsFromGoogle={accountsFromGoogle}
         />
       ) : (
         <div>

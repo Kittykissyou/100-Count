@@ -14,6 +14,7 @@ const Category = ({
   stepCount,
   addStep,
   deleteStep,
+  accountsFromGoogle,
 }) => {
   const [isBack, setIsBack] = useState(false);
   const [isCheck, setIsCheck] = useState(false); // состояние "подтвержденности"
@@ -45,6 +46,7 @@ const Category = ({
             addStep={addStep}
             stepCount={stepCount}
             deleteStep={deleteStep}
+            accountsFromGoogle={accountsFromGoogle}
           />
         ) : (
           <Critery
@@ -55,6 +57,7 @@ const Category = ({
             addStep={addStep}
             stepCount={stepCount}
             deleteStep={deleteStep}
+            accountsFromGoogle={accountsFromGoogle}
           />
         )
       ) : isBack ? (
@@ -65,6 +68,7 @@ const Category = ({
           addStep={addStep}
           stepCount={stepCount}
           deleteStep={deleteStep}
+          accountsFromGoogle={accountsFromGoogle}
         />
       ) : (
         <div>

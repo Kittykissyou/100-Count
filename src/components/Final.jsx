@@ -20,6 +20,7 @@ const Final = ({
   const [finalObj, setFinalObj] = useState({}); // Инф. после расчетов
   const [checkLoader, setCheckLoader] = useState(false); // отображ. чек лоадера
   const [goLoader, setGoLoader] = useState(false); // запуск спина лоадера
+  const [checkTransaction, setCheckTransaction] = useState(false);
 
   const doTransaction = () => {
     setFinalObj({
@@ -27,6 +28,7 @@ const Final = ({
       ['balance']:
         accountsFromGoogle[objWithInf.account] - Number(objWithInf.summ),
     });
+    setCheckTransaction(!checkTransaction);
   };
 
   const goGoogle = () => {
@@ -95,6 +97,7 @@ const Final = ({
           addStep={addStep}
           stepCount={stepCount}
           deleteStep={deleteStep}
+          accountsFromGoogle={accountsFromGoogle}
         />
       ) : (
         <div>
@@ -120,17 +123,21 @@ const Final = ({
                   </tr>
                 </tbody>
               </table>
-              <Button onClick={doTransaction} style={{ margin: '20px' }}>
-                Подтвердить
-              </Button>
               <Button
-                onClick={goGoogle}
+                onClick={doTransaction}
+                style={{ margin: '20px' }}
                 disabled={Object.values(objWithInf).length < 6 ? true : false}
                 title={
                   Object.values(objWithInf).length < 6
                     ? 'Сначала внесите недостающие данные'
                     : ''
                 }
+              >
+                Подтвердить
+              </Button>
+              <Button
+                onClick={goGoogle}
+                disabled={!checkTransaction ? true : false}
               >
                 Отправить
               </Button>
