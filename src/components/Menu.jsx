@@ -5,7 +5,7 @@ import style from './Menu.module.css';
 
 export const Menu = () => {
   return (
-    <nav>
+    <nav className={style.nav}>
       {menu.map((category) => (
         <Link className={style.menu} to={category.slug} key={uuidv4()}>
           {category.name}

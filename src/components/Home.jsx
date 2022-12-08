@@ -3,7 +3,7 @@ import style from './Home.module.css';
 const Home = () => {
   return (
     <div className={style.background}>
-      <h1 className={style.title}>Детальный отчет</h1>
+      <h1 className={style.title}>Учет доходов и расходов</h1>
       <Menu />
     </div>
   );

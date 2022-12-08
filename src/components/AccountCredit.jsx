@@ -63,7 +63,9 @@ const AccountCredit = ({
         />
       ) : (
         <div>
-          <h1 style={{ fontSize: '40px' }}>У вас ещё нет сохраненный счетов</h1>
+          <h1 style={{ fontSize: '40px', marginTop: '10%' }}>
+            У вас ещё нет сохраненный счетов
+          </h1>
           <h2> Внесите сведения о своих счетах</h2>
           <form className={style.formContaner} onSubmit={nextStepHandler}>
             <div className={style.inputContaner}>
