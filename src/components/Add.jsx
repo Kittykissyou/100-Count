@@ -19,6 +19,7 @@ const Add = () => {
     свойств в объект приводили либо к ошибке, либо при первом рендеринге появлялся пустой
     объект, а не объект внутри Set */
   };
+
   const [info, setInfo] = useState(false);
   const requestOptions = {
     method: 'GET',
@@ -29,7 +30,11 @@ const Add = () => {
     requestOptions
   )
     .then((response) => response.text())
-    .then((result) => setInfo(JSON.parse(result)))
+    .then((result) => {
+      if (!info) {
+        setInfo(JSON.parse(result));
+      }
+    })
     .catch((error) => console.log('error', error));
 
   /* эта функция позволяет записать в состояние свойство и значение,
@@ -72,26 +77,3 @@ const Add = () => {
 };
 
 export default Add;
-
-/*(Object.keys(info).length = 0 ? (
-  <AccountCredit
-    addSkipTransaction={addSkipTransactionHandler}
-    addTransaction={addTransactionHandler}
-    objWithInf={transactions}
-    stepCount={stepCount}
-    addStep={(n) => setStepCount(stepCount + n)}
-    deleteStep={(n) => setStepCount(stepCount - n)}
-  />
-) : Object.keys(info).length > 0 ? (
-  <ChooseDate
-    addSkipTransaction={addSkipTransactionHandler}
-    addTransaction={addTransactionHandler}
-    objWithInf={transactions}
-    stepCount={stepCount}
-    addStep={(n) => setStepCount(stepCount + n)}
-    deleteStep={(n) => setStepCount(stepCount - n)}
-  />
-) : (
-  <Loader />
-))
-*/

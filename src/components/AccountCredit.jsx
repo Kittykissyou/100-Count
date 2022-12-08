@@ -15,10 +15,8 @@ const AccountCredit = ({
   const [inputValueName, setInputValueName] = useState('');
   const [inputValueBalance, setInputValueBalance] = useState('');
   const [isCheck, setIsCheck] = useState(false);
-  // const [objAccounts, setObjAccounts] = useState({});
   const addAccountHandler = (event) => {
     event.preventDefault();
-    // setObjAccounts({ ...objAccounts, [inputValueName]: inputValueBalance });
     setInputValueName('');
     setInputValueBalance('');
     const myHeaders = new Headers();
