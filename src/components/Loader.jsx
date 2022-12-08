@@ -1,7 +1,6 @@
 import { SlRefresh, SlCheck } from 'react-icons/sl';
 import style from './Loader.module.css';
 const Loader = ({ check }) => {
-  console.log(check);
   return (
     <div>
       {!check ? (

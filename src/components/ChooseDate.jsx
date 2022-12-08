@@ -7,12 +7,10 @@ import moment from 'moment'; // позволяет задать дате нуж�
 
 const ChooseDate = ({
   addTransaction,
-  addSkipTransaction,
   objWithInf,
   stepCount,
   addStep,
   deleteStep,
-  accountsFromGoogle,
 }) => {
   const currentDate = () => {
     //Функция возвращающая текующую дату
@@ -22,6 +20,20 @@ const ChooseDate = ({
 
   const [isCheck, setIsCheck] = useState(false); // состояние "подтвержденности"
   const [inputValue, setInputValue] = useState(currentDate()); // состояние даты в инпуте
+  const [accountsFromGoogle, setAccountsFromGoogle] = useState({});
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+  fetch(
+    'https://script.google.com/macros/s/AKfycbyDo6wbCglb9ZDqyGNGMaTF0l0LzHtHwA5AiYPzNsddkUDi_hDkk8CVdlAcjpTrBMg2ug/exec',
+    requestOptions
+  )
+    .then((response) => response.text())
+    .then((result) => {
+      setAccountsFromGoogle(JSON.parse(result));
+    })
+    .catch((error) => console.log('error', error));
   const submitHandler = (event) => {
     event.preventDefault();
     setIsCheck(!isCheck);
@@ -33,7 +45,6 @@ const ChooseDate = ({
     <>
       {isCheck ? ( // при нажатии на кнопку, чек становиться true и появляется следующий комп.
         <Category
-          addSkipTransaction={addSkipTransaction}
           addTransaction={addTransaction}
           objWithInf={objWithInf}
           stepCount={stepCount}

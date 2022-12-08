@@ -17,7 +17,9 @@ const Account = ({
 }) => {
   const [isBack, setIsBack] = useState(false);
   const [isCheck, setIsCheck] = useState(false); // состояние "подтвержденности"
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState(
+    Object.keys(accountsFromGoogle)[0]
+  );
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -30,7 +32,7 @@ const Account = ({
     <div>
       {isCheck ? (
         <Description
-          addSkipTransaction={addSkipTransaction}
+          // addSkipTransaction={addSkipTransaction}
           addTransaction={addTransaction}
           objWithInf={objWithInf}
           id={id}
@@ -41,7 +43,7 @@ const Account = ({
         />
       ) : isBack ? (
         <Summ
-          addSkipTransaction={addSkipTransaction}
+          //addSkipTransaction={addSkipTransaction}
           addTransaction={addTransaction}
           objWithInf={objWithInf}
           id={id}

@@ -4,13 +4,8 @@ import AccountCredit from './AccountCredit';
 import Loader from './Loader';
 
 const Add = () => {
-  let [transactions, setTransactions] = useState({});
+  const [transactions, setTransactions] = useState({});
   const [stepCount, setStepCount] = useState(1);
-
-  const addSkipTransactionHandler = (prop, value) => {
-    const transaction = { [prop]: value };
-    setTransactions(Object.assign(transactions, transaction));
-  };
   const addTransactionHandler = (e, inputValue) => {
     const transaction = { [e.target.name]: inputValue };
     setTransactions(Object.assign(transactions, transaction));
@@ -19,9 +14,10 @@ const Add = () => {
     свойств в объект приводили либо к ошибке, либо при первом рендеринге появлялся пустой
     объект, а не объект внутри Set */
   };
+  const [info, setInfo] = useState(false); // содержит ответ от googleSheets
 
-  const [info, setInfo] = useState(false);
   const requestOptions = {
+    // получаем ответ googleSheet, либо есть счета, либо нет
     method: 'GET',
     redirect: 'follow',
   };
@@ -37,22 +33,12 @@ const Add = () => {
     })
     .catch((error) => console.log('error', error));
 
-  /* эта функция позволяет записать в состояние свойство и значение,
-    которое мы будем получать на каждом шаге из импута. В конце концов,
-    сформировавшийся объект, мы передадим через npm пакет Axios на API,
-    которое внесет изменение в гугл-таблицу. Формирование одного объекта,
-    содержащего в себе несколько свойств названных аналогично REACT-компонентам
-    со значениями из импутов внутри данных компонентов, обусловленно особенностью
-    API с которым мы взаимодествуем для передачи данных в гугл-таблицы (если
-    передавать свойства и значения объекта внутри каждого компонента, то данные
-    из последующих компонентов вносятся на строку ниже) */
-
+  console.log(transactions);
   return (
     <div>
       {info ? (
         Object.keys(info).length > 0 ? (
           <ChooseDate
-            addSkipTransaction={addSkipTransactionHandler}
             addTransaction={addTransactionHandler}
             objWithInf={transactions}
             stepCount={stepCount}
@@ -61,12 +47,12 @@ const Add = () => {
           />
         ) : (
           <AccountCredit
-            addSkipTransaction={addSkipTransactionHandler}
             addTransaction={addTransactionHandler}
             objWithInf={transactions}
             stepCount={stepCount}
             addStep={(n) => setStepCount(stepCount + n)}
             deleteStep={(n) => setStepCount(stepCount - n)}
+            accountsFromGoogle={info}
           />
         )
       ) : (

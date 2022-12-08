@@ -39,7 +39,7 @@ const Category = ({
       {isCheck ? (
         inputValue == 'приход' || inputValue == 'перевод между счетами' ? (
           <Summ
-            addSkipTransaction={addSkipTransaction}
+            //  addSkipTransaction={addSkipTransaction}
             addTransaction={addTransaction}
             id={uuidv4}
             objWithInf={objWithInf}
@@ -50,7 +50,7 @@ const Category = ({
           />
         ) : (
           <Critery
-            addSkipTransaction={addSkipTransaction}
+            // addSkipTransaction={addSkipTransaction}
             addTransaction={addTransaction}
             id={uuidv4}
             objWithInf={objWithInf}

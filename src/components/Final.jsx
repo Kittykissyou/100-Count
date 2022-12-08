@@ -7,7 +7,6 @@ import Loader from './Loader';
 import style from './Components.module.css';
 
 const Final = ({
-  addSkipTransaction,
   objWithInf,
   id,
   addTransaction,
@@ -20,7 +19,7 @@ const Final = ({
   const [finalObj, setFinalObj] = useState({}); // Инф. после расчетов
   const [checkLoader, setCheckLoader] = useState(false); // отображ. чек лоадера
   const [goLoader, setGoLoader] = useState(false); // запуск спина лоадера
-  const [checkTransaction, setCheckTransaction] = useState(false);
+  const [checkTransaction, setCheckTransaction] = useState(false); // разлок кнопки отправления, только после подтвержд.
 
   const doTransaction = () => {
     setFinalObj({
@@ -90,7 +89,6 @@ const Final = ({
         <Loader check={checkLoader} />
       ) : isBack ? (
         <Description
-          addSkipTransaction={addSkipTransaction}
           objWithInf={objWithInf}
           id={id}
           addTransaction={addTransaction}

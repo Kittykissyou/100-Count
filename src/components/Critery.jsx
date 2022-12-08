@@ -29,7 +29,7 @@ const Critery = ({
     <div>
       {isCheck ? (
         <Summ
-          addSkipTransaction={addSkipTransaction}
+          //addSkipTransaction={addSkipTransaction}
           addTransaction={addTransaction}
           id={id}
           objWithInf={objWithInf}
@@ -40,7 +40,7 @@ const Critery = ({
         />
       ) : isBack ? (
         <Category
-          addSkipTransaction={addSkipTransaction}
+          //addSkipTransaction={addSkipTransaction}
           addTransaction={addTransaction}
           objWithInf={objWithInf}
           addStep={addStep}

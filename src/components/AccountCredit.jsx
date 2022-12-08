@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { SlRefresh } from 'react-icons/sl';
 import ChooseDate from './ChooseDate';
 import Button from './UI/Button';
@@ -6,7 +6,6 @@ import style from './AccountCredit.module.css';
 
 const AccountCredit = ({
   addTransaction,
-  addSkipTransaction,
   objWithInf,
   stepCount,
   addStep,
@@ -15,10 +14,12 @@ const AccountCredit = ({
   const [inputValueName, setInputValueName] = useState('');
   const [inputValueBalance, setInputValueBalance] = useState('');
   const [isCheck, setIsCheck] = useState(false);
+  const [checkAccount, setCheckAccount] = useState(false);
   const addAccountHandler = (event) => {
     event.preventDefault();
     setInputValueName('');
     setInputValueBalance('');
+    setCheckAccount(true);
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -54,7 +55,6 @@ const AccountCredit = ({
     <>
       {isCheck ? (
         <ChooseDate
-          addSkipTransaction={addSkipTransaction}
           addTransaction={addTransaction}
           objWithInf={objWithInf}
           stepCount={stepCount}
@@ -93,7 +93,9 @@ const AccountCredit = ({
             <Button
               onClick={addAccountHandler}
               disabled={
-                inputValueName.length > 0 || inputValueBalance > 0
+                inputValueName.length > 0 &&
+                inputValueBalance.length > 0 &&
+                !!Number(inputValueBalance)
                   ? false
                   : true
               }
@@ -101,10 +103,7 @@ const AccountCredit = ({
               Добавить
             </Button>
             <Button>Редактировать</Button>
-            <Button
-              type="submit"
-              // disabled={Object.keys(objAccounts).length > 0 ? false : true}
-            >
+            <Button type="submit" disabled={checkAccount ? false : true}>
               Далее
             </Button>
           </form>

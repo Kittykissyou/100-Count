@@ -6,7 +6,6 @@ import Button from './UI/Button';
 import FastMenu from './FastMenu';
 import style from './Description.module.css';
 const Description = ({
-  addSkipTransaction,
   addTransaction,
   objWithInf,
   id,
@@ -29,7 +28,6 @@ const Description = ({
     <div>
       {isCheck ? (
         <Final
-          addSkipTransaction={addSkipTransaction}
           objWithInf={objWithInf}
           id={id}
           addTransaction={addTransaction}
@@ -40,7 +38,6 @@ const Description = ({
         />
       ) : isBack ? (
         <Account
-          addSkipTransaction={addSkipTransaction}
           objWithInf={objWithInf}
           id={id}
           addTransaction={addTransaction}
@@ -98,19 +95,3 @@ const Description = ({
   );
 };
 export default Description;
-
-/* <input
-          className={`${style.input} ${
-            inputValue.length >= 19 && inputValue.length <= 29
-              ? style.bigInput
-              : inputValue.length >= 30 && inputValue.length <= 39
-              ? style.bigX2Input
-              : inputValue.length >= 40
-              ? style.bigX3Input
-              : ''
-          }`}
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        */
